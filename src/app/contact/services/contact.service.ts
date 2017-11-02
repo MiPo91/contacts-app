@@ -10,7 +10,15 @@ export class ContactService {
 
   constructor() {
     this.contacts = this.findContacts();
-    this.id = _.maxBy(this.contacts, function(c) { return c.id; }).id;
+
+    const testi = _.maxBy(this.contacts, function (c) {
+      return c.id;
+    });
+    if (typeof testi !== 'undefined') {
+      this.id = testi.id;
+    } else {
+      this.id = 0;
+    }
   }
 
   findContacts() {
@@ -19,7 +27,7 @@ export class ContactService {
   }
 
   findContactById(id) {
-    return _.find(this.contacts, function(c) { return c.id === id ; });
+    // return _.find(this.contacts, function(c) { return c.id === id ; });
   }
 
   saveContact(contact: Contact) {
