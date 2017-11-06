@@ -7,13 +7,37 @@ import {ContactService} from './contact/services/contact.service';
 import {ContactListItemComponent} from './contact/contact-list/contact-list-item/contact-list-item.component';
 import {FormsModule} from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatButtonModule, MatCardModule, MatExpansionModule, MatIconModule, MatInputModule} from '@angular/material';
+import {
+  MatButtonModule, MatCardModule, MatExpansionModule, MatIconModule, MatInputModule, MatSidenavModule,
+  MatToolbarModule
+} from '@angular/material';
+import {RouterModule, Routes} from '@angular/router';
+import {FlexLayoutModule} from '@angular/flex-layout';
+import {ContactDetailsComponent} from './contact/contact-details/contact-details.component';
+
+const routes: Routes = [
+  {
+    path: '',
+    component: ContactListComponent
+  }, {
+    path: 'contacts',
+    component: ContactListComponent
+  },
+  {
+    path: 'add-contact',
+    component: ContactDetailsComponent
+  }, {
+    path: 'contacts/:id',
+    component: ContactDetailsComponent
+  }
+];
 
 @NgModule({
   declarations: [
     AppComponent,
     ContactListComponent,
-    ContactListItemComponent
+    ContactListItemComponent,
+    ContactDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -23,7 +47,11 @@ import {MatButtonModule, MatCardModule, MatExpansionModule, MatIconModule, MatIn
     MatInputModule,
     MatCardModule,
     MatIconModule,
-    MatExpansionModule
+    MatExpansionModule,
+    RouterModule.forRoot(routes),
+    FlexLayoutModule,
+    MatToolbarModule,
+    MatSidenavModule
   ],
   providers: [ContactService],
   bootstrap: [AppComponent]

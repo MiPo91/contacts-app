@@ -1,0 +1,7 @@
+mat-expansion-panel {
+  width:  440px;
+  box-sizing: border-box;
+}
+.mat-expansion-panel-header-description {
+  justify-content: space-between;
+}

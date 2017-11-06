@@ -1,6 +1,7 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {ContactService} from '../services/contact.service';
 import {Contact} from '../contact';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-contact-list',
@@ -10,18 +11,25 @@ import {Contact} from '../contact';
 export class ContactListComponent implements OnInit {
 
   public contacts: Contact[];
-  contact: Contact;
+  title: string;
 
-  constructor(private contactService: ContactService) {
+
+  // contact: Contact;
+
+  constructor(private contactService: ContactService, private router: Router) {
     this.contacts = [];
-    this.contact = new Contact();
+    this.title = 'Contacts';
+
+    // this.contact = new Contact();
   }
 
   ngOnInit() {
     this.contacts = this.contactService.findContacts();
+
   }
 
-  onSubmitContact() {
-    this.contactService.saveContact(this.contact);
+  onSubmitNewContact() {
+    // this.contactService.saveContact(this.contact);
+    this.router.navigate(['/add-contact']);
   }
 }

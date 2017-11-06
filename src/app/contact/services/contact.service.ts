@@ -23,11 +23,19 @@ export class ContactService {
 
   findContacts() {
     this.contacts = JSON.parse(localStorage.getItem('contacts'));
+
+    if (this.contacts === null) {
+      this.contacts = [
+        new Contact(1, 'Testi', 'Henkilo', '040123456', 'Testikuja 12', 'Lappeenranta')
+      ];
+      this.saveToLocalStorage();
+    }
+
     return this.contacts;
   }
 
   findContactById(id) {
-    // return _.find(this.contacts, function(c) { return c.id === id ; });
+     return _.find(this.contacts, function(c) { return c.id === id ; });
   }
 
   saveContact(contact: Contact) {
@@ -42,6 +50,12 @@ export class ContactService {
     _.remove(this.contacts, function (c) {
       return c.id === contact.id;
     });
+    this.saveToLocalStorage();
+  }
+
+  saveEditContact(contact: Contact) {
+    const index = _.findIndex(this.contacts, {id: contact.id});
+    this.contacts.splice(index, 1, contact);
     this.saveToLocalStorage();
   }
 

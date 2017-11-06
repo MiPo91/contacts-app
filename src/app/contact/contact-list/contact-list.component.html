@@ -3,32 +3,6 @@
     <app-contact-list-item [contact]="contact"></app-contact-list-item>
   </div>
 </div>
-<mat-expansion-panel hideToggle="true">
-  <mat-expansion-panel-header>
-    <mat-panel-title>New Contact</mat-panel-title>
-    <mat-panel-description>
-      Type new Contact information
-      <mat-icon>face</mat-icon>
-    </mat-panel-description>
-  </mat-expansion-panel-header>
-
-  <mat-form-field>
-    <input matInput placeholder="First Name" [(ngModel)]="contact.firstName">
-  </mat-form-field>
-  <mat-form-field>
-    <input matInput placeholder="Last Name" [(ngModel)]="contact.lastName">
-  </mat-form-field>
-  <mat-form-field>
-    <input matInput placeholder="Phone" [(ngModel)]="contact.phone">
-  </mat-form-field>
-  <mat-form-field>
-    <input matInput placeholder="Street Address" [(ngModel)]="contact.streetAddress">
-  </mat-form-field>
-  <mat-form-field>
-    <input matInput placeholder="City" [(ngModel)]="contact.city">
-  </mat-form-field>
-  <mat-action-row>
-    <button mat-button (click)="onSubmitContact()">Save</button>
-  </mat-action-row>
-
-</mat-expansion-panel>
+<button mat-fab  color="primary" (click)="onSubmitNewContact()">
+  <mat-icon>add circle</mat-icon>
+</button>

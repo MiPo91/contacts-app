@@ -4,3 +4,7 @@ mat-card {
   float: left;
   margin: 0px 5px 5px 0px;
 }
+mat-form-field {
+  display: block;
+  width: 100%;
+}
