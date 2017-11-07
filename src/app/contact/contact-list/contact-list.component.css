@@ -1,5 +1,10 @@
 .userCards {
   overflow: hidden;
-  padding: 2px;
-  margin: -2px;
+  padding: 5px;
+  margin: 0px;
+}
+.add-new {
+  position: absolute;
+  right: 20px;
+  bottom: 10px;
 }

@@ -1,14 +1,31 @@
 <mat-sidenav-container>
-  <mat-sidenav mode="over" align="start">
-
+  <mat-sidenav #sidenav mode="over" align="start">
+    <div class="sidenav-img">
+      <mat-icon>account_circle</mat-icon>
+      <span>Ylläpitäjä</span>
+    </div>
+    <div class="sidenav-content">
+      <mat-list>
+        <mat-list-item>
+          <mat-icon mat-list-icon="">list</mat-icon>
+          <button mat-button (click)="showContacts()">List</button>
+        </mat-list-item>
+        <mat-list-item>
+          <mat-icon mat-list-icon="">add</mat-icon>
+          <button mat-button (click)="addContact()">Add New</button>
+        </mat-list-item>
+      </mat-list>
+    </div>
   </mat-sidenav>
-
-  <mat-toolbar color="primary">
-    <!--<button mat-raised-button (click)="showContacts()">Show Contacts</button>-->
-    contacts-app
-  </mat-toolbar>
-
-  <router-outlet></router-outlet>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button mat-icon-button (click)="sidenav.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+      {{title}}
+    </mat-toolbar>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
 </mat-sidenav-container>
 
 

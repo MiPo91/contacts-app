@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ContactService} from '../services/contact.service';
 import {Contact} from '../contact';
-import {ActivatedRoute, ParamMap, Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import 'rxjs/add/operator/switchMap';
 
 @Component({
@@ -23,12 +23,12 @@ export class ContactDetailsComponent implements OnInit {
 
   onSubmitContact() {
     this.contactService.saveContact(this.contact);
-    this.router.navigate(['/contacts']);
+    this.router.navigate(['/']);
   }
 
   onSubmitEditContact() {
     this.contactService.saveEditContact(this.contact);
-    this.router.navigate(['/contacts']);
+    this.router.navigate(['/']);
   }
 
   onCancel() {

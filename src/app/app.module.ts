@@ -8,7 +8,7 @@ import {ContactListItemComponent} from './contact/contact-list/contact-list-item
 import {FormsModule} from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {
-  MatButtonModule, MatCardModule, MatExpansionModule, MatIconModule, MatInputModule, MatSidenavModule,
+  MatButtonModule, MatCardModule, MatExpansionModule, MatIconModule, MatInputModule, MatListModule, MatSidenavModule,
   MatToolbarModule
 } from '@angular/material';
 import {RouterModule, Routes} from '@angular/router';
@@ -51,7 +51,8 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     FlexLayoutModule,
     MatToolbarModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatListModule
   ],
   providers: [ContactService],
   bootstrap: [AppComponent]

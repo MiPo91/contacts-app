@@ -2,7 +2,8 @@
   <div *ngFor="let contact of contacts">
     <app-contact-list-item [contact]="contact"></app-contact-list-item>
   </div>
+
+  <button mat-mini-fab  color="primary" class="add-new" (click)="onSubmitNewContact()">
+    <mat-icon>add</mat-icon>
+  </button>
 </div>
-<button mat-fab  color="primary" (click)="onSubmitNewContact()">
-  <mat-icon>add circle</mat-icon>
-</button>

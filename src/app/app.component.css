@@ -1,0 +1,20 @@
+mat-sidenav {
+  width: 200px;
+  overflow: hidden;
+}
+
+.sidenav-img {
+  width: 100%;
+  text-align: center;
+}
+
+.sidenav-img mat-icon {
+  font-size: 48px;
+  height: auto;
+  width: auto;
+  display: block;
+}
+
+.sidenav-content button {
+  text-align: left;
+}

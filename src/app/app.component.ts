@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {Router} from '@angular/router';
 
 @Component({
@@ -10,10 +10,14 @@ export class AppComponent {
   title: string;
 
   constructor(private router: Router) {
-    this.title = 'Home';
+    this.title = 'contacts-app';
   }
 
   showContacts() {
-    this.router.navigate(['/contacts']);
+    this.router.navigate(['/']);
+  }
+
+  addContact() {
+    this.router.navigate(['/add-contact']);
   }
 }
