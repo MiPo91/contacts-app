@@ -8,7 +8,7 @@
   </mat-card-header>
   <mat-card-content>
     <p>Phone: {{contact.phone}}</p>
-    <p>Address: {{contact.streetAddress}}, {{contact.city}}</p>
+    <p>Address: {{contact | contactAddress}}</p>
   </mat-card-content>
   <mat-card-actions>
     <button mat-icon-button (click)="onSubmitEdit()" color="primary"><mat-icon>edit</mat-icon></button>
