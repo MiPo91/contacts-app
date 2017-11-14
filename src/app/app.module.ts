@@ -15,8 +15,8 @@ import {RouterModule, Routes} from '@angular/router';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {ContactDetailsComponent} from './contact/contact-details/contact-details.component';
 import { ContactAddressPipe } from './contact/pipes/contact-address.pipe';
-import { ToolbarComponent } from './contact/toolbar/toolbar/toolbar.component';
-import {ToolbarService} from './contact/toolbar/toolbar.service';
+import { ToolbarComponent } from './toolbar/toolbar/toolbar.component';
+import {ToolbarService} from './toolbar/toolbar.service';
 
 const routes: Routes = [
   {

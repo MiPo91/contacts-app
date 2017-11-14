@@ -3,7 +3,7 @@ import {ContactService} from '../services/contact.service';
 import {Contact} from '../contact';
 import {ActivatedRoute, Router} from '@angular/router';
 import 'rxjs/add/operator/switchMap';
-import {ToolbarService, ToolbarSettings} from '../toolbar/toolbar.service';
+import {ToolbarService, ToolbarSettings} from '../../toolbar/toolbar.service';
 import {Location} from '@angular/common';
 
 @Component({
