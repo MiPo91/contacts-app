@@ -14,12 +14,14 @@ import {
 import {RouterModule, Routes} from '@angular/router';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {ContactDetailsComponent} from './contact/contact-details/contact-details.component';
-import { ContactAddressPipe } from './contact/pipes/contact-address.pipe';
-import { ToolbarComponent } from './toolbar/toolbar/toolbar.component';
+import {ContactAddressPipe} from './contact/pipes/contact-address.pipe';
+import {ToolbarComponent} from './toolbar/toolbar/toolbar.component';
 import {ToolbarService} from './toolbar/toolbar.service';
-import { MapComponent } from './map/map.component';
-import { MapLayoutCardComponent } from './map/map-layout-card/map-layout-card.component';
-import { SafeUrlPipe } from './utils/safe-url.pipe';
+import {MapComponent} from './map/map.component';
+import {MapLayoutCardComponent} from './map/map-layout-card/map-layout-card.component';
+import {SafeUrlPipe} from './utils/safe-url.pipe';
+import {LoginComponent} from './user/login/login.component';
+import {UserService} from './user/user.service';
 
 const routes: Routes = [
   {
@@ -38,6 +40,9 @@ const routes: Routes = [
   }, {
     path: 'map',
     component: MapLayoutCardComponent
+  }, {
+    path: 'login',
+    component: LoginComponent
   }
 ];
 
@@ -51,7 +56,8 @@ const routes: Routes = [
     ToolbarComponent,
     MapComponent,
     MapLayoutCardComponent,
-    SafeUrlPipe
+    SafeUrlPipe,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -68,7 +74,7 @@ const routes: Routes = [
     MatSidenavModule,
     MatListModule
   ],
-  providers: [ContactService, ToolbarService],
+  providers: [ContactService, ToolbarService, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
