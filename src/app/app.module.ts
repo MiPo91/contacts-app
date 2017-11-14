@@ -15,6 +15,8 @@ import {RouterModule, Routes} from '@angular/router';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {ContactDetailsComponent} from './contact/contact-details/contact-details.component';
 import { ContactAddressPipe } from './contact/pipes/contact-address.pipe';
+import { ToolbarComponent } from './contact/toolbar/toolbar/toolbar.component';
+import {ToolbarService} from './contact/toolbar/toolbar.service';
 
 const routes: Routes = [
   {
@@ -39,7 +41,8 @@ const routes: Routes = [
     ContactListComponent,
     ContactListItemComponent,
     ContactDetailsComponent,
-    ContactAddressPipe
+    ContactAddressPipe,
+    ToolbarComponent
   ],
   imports: [
     BrowserModule,
@@ -56,7 +59,7 @@ const routes: Routes = [
     MatSidenavModule,
     MatListModule
   ],
-  providers: [ContactService],
+  providers: [ContactService, ToolbarService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
