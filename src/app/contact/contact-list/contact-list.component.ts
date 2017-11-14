@@ -19,7 +19,7 @@ export class ContactListComponent implements OnInit {
 
   ngOnInit() {
     this.contacts = this.contactService.findContacts();
-    this.toolbar.toolbarSettings.next( new ToolbarSettings('Contacts'));
+    this.toolbar.toolbarSettings.next(new ToolbarSettings('Contacts'));
   }
 
   onSubmitNewContact() {

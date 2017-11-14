@@ -17,6 +17,9 @@ import {ContactDetailsComponent} from './contact/contact-details/contact-details
 import { ContactAddressPipe } from './contact/pipes/contact-address.pipe';
 import { ToolbarComponent } from './toolbar/toolbar/toolbar.component';
 import {ToolbarService} from './toolbar/toolbar.service';
+import { MapComponent } from './map/map.component';
+import { MapLayoutCardComponent } from './map/map-layout-card/map-layout-card.component';
+import { SafeUrlPipe } from './utils/safe-url.pipe';
 
 const routes: Routes = [
   {
@@ -32,6 +35,9 @@ const routes: Routes = [
   }, {
     path: 'contacts/:id',
     component: ContactDetailsComponent
+  }, {
+    path: 'map',
+    component: MapLayoutCardComponent
   }
 ];
 
@@ -42,7 +48,10 @@ const routes: Routes = [
     ContactListItemComponent,
     ContactDetailsComponent,
     ContactAddressPipe,
-    ToolbarComponent
+    ToolbarComponent,
+    MapComponent,
+    MapLayoutCardComponent,
+    SafeUrlPipe
   ],
   imports: [
     BrowserModule,

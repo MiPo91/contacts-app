@@ -25,4 +25,13 @@ export class ContactListItemComponent implements OnInit {
   onSubmitEdit() {
     this.router.navigate(['/contacts', this.contact.id]);
   }
+
+  navigateToMap() {
+    this.router.navigate(['map',
+      {
+        streetAddress: this.contact.streetAddress,
+        city: this.contact.city
+      }
+    ]);
+  }
 }
