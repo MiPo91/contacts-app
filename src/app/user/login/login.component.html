@@ -1,4 +1,5 @@
-<div class="login-form">
+<div fxLayout="column" fxLayoutAlign="center center" fxFlexFill>
+<mat-card class="login-form">
   <mat-form-field>
     <input matInput placeholder="Account Name" [(ngModel)]="user.account">
   </mat-form-field>
@@ -7,8 +8,8 @@
     <input matInput placeholder="Password" type="password" [(ngModel)]="user.password">
   </mat-form-field>
 
-  <button (click)="login()">Login</button>
+  <button (click)="login()" mat-raised-button color="primary">Login</button>
 
   <span>{{errorMessage}}</span>
+</mat-card>
 </div>
-

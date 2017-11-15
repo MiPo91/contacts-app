@@ -1,0 +1,17 @@
+mat-form-field {
+  display: block;
+}
+
+mat-icon {
+  font-size: 48px;
+}
+
+button {
+  height: 48px;
+  width: 48px;
+}
+
+span {
+  margin-top: 10px;
+  display: block;
+}

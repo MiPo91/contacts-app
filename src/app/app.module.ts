@@ -22,6 +22,7 @@ import {MapLayoutCardComponent} from './map/map-layout-card/map-layout-card.comp
 import {SafeUrlPipe} from './utils/safe-url.pipe';
 import {LoginComponent} from './user/login/login.component';
 import {UserService} from './user/user.service';
+import {LayoutModule} from '@angular/cdk/layout';
 
 const routes: Routes = [
   {
@@ -72,7 +73,8 @@ const routes: Routes = [
     FlexLayoutModule,
     MatToolbarModule,
     MatSidenavModule,
-    MatListModule
+    MatListModule,
+    LayoutModule
   ],
   providers: [ContactService, ToolbarService, UserService],
   bootstrap: [AppComponent]

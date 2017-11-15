@@ -15,6 +15,6 @@ export class MapComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.mapUrl = 'https://www.google.com/maps?q=' + this.streetAddress + '&output=embed';
+    this.mapUrl = 'https://www.google.com/maps?q=' + this.streetAddress + ',' + this.city + '&output=embed&zoom=15';
   }
 }

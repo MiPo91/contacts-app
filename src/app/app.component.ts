@@ -2,7 +2,7 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {Router} from '@angular/router';
 import {MatSidenav} from '@angular/material';
 import {UserService} from './user/user.service';
-import {User} from './user/user';
+import {BreakpointObserver} from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-root',
@@ -11,11 +11,18 @@ import {User} from './user/user';
 })
 export class AppComponent implements OnInit {
   @ViewChild('sidenav') sidenav: MatSidenav;
+  smallScreenQuery = '(max-width: 599px)';
+  isSmallScreen: boolean;
 
-  constructor(private router: Router, private userService: UserService) {
+  constructor(private router: Router, private userService: UserService, private breakpointObserver: BreakpointObserver) {
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
+    this.breakpointObserver.observe([
+      this.smallScreenQuery
+    ]).subscribe(result => {
+      this.isSmallScreen = result.matches;
+    });
   }
 
   showContacts() {

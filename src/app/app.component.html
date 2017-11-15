@@ -1,5 +1,7 @@
 <mat-sidenav-container>
-  <mat-sidenav #sidenav mode="over" align="start">
+  <mat-sidenav #sidenav align="start"
+               [mode]="isSmallScreen ? 'over' : 'side'"
+               [opened]="!isSmallScreen">
     <div class="sidenav-img" *ngIf="isLoggedIn() === true">
       <mat-icon>account_circle</mat-icon>
       <span>{{getUserInfo().name}}</span>
@@ -23,10 +25,11 @@
     </div>
   </mat-sidenav>
   <mat-sidenav-content>
-    <app-toolbar (toggleSidenav)="toggleSidenav()"></app-toolbar>
-    <router-outlet></router-outlet>
+    <div fxLayout="column" fxLayoutAlign="start stretch" fxFlexFill>
+      <app-toolbar (toggleSidenav)="toggleSidenav()"></app-toolbar>
+      <div class="app-container">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
   </mat-sidenav-content>
 </mat-sidenav-container>
-
-
-
