@@ -1,0 +1,11 @@
+C:\dev\contacts-app\webapi\ContactsWebApi\ContactsWebApi\bin\Debug\netcoreapp2.0\ContactsWebApi.deps.json
+C:\dev\contacts-app\webapi\ContactsWebApi\ContactsWebApi\bin\Debug\netcoreapp2.0\ContactsWebApi.runtimeconfig.json
+C:\dev\contacts-app\webapi\ContactsWebApi\ContactsWebApi\bin\Debug\netcoreapp2.0\ContactsWebApi.runtimeconfig.dev.json
+C:\dev\contacts-app\webapi\ContactsWebApi\ContactsWebApi\bin\Debug\netcoreapp2.0\ContactsWebApi.dll
+C:\dev\contacts-app\webapi\ContactsWebApi\ContactsWebApi\bin\Debug\netcoreapp2.0\ContactsWebApi.pdb
+C:\dev\contacts-app\webapi\ContactsWebApi\ContactsWebApi\obj\Debug\netcoreapp2.0\ContactsWebApi.csprojResolveAssemblyReference.cache
+C:\dev\contacts-app\webapi\ContactsWebApi\ContactsWebApi\obj\Debug\netcoreapp2.0\ContactsWebApi.csproj.CoreCompileInputs.cache
+C:\dev\contacts-app\webapi\ContactsWebApi\ContactsWebApi\obj\Debug\netcoreapp2.0\ContactsWebApi.AssemblyInfoInputs.cache
+C:\dev\contacts-app\webapi\ContactsWebApi\ContactsWebApi\obj\Debug\netcoreapp2.0\ContactsWebApi.AssemblyInfo.cs
+C:\dev\contacts-app\webapi\ContactsWebApi\ContactsWebApi\obj\Debug\netcoreapp2.0\ContactsWebApi.dll
+C:\dev\contacts-app\webapi\ContactsWebApi\ContactsWebApi\obj\Debug\netcoreapp2.0\ContactsWebApi.pdb
