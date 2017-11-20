@@ -1,4 +1,5 @@
-﻿using ContactsWebApi.Services;
+﻿using ContactsWebApi.Models;
+using ContactsWebApi.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ContactsWebApi.Controllers
@@ -26,5 +27,28 @@ namespace ContactsWebApi.Controllers
             var contact = _contactService.FindContactById(id);
             return new JsonResult(contact);
         }
+
+        [HttpPost]
+        public IActionResult Post([FromBody] Contact contact)
+        {
+            var contacts = _contactService.AddNewContact(contact);
+            return new JsonResult(contacts);
+        }
+
+        
+        [HttpPut("{id}")]
+        public IActionResult Put(int id, [FromBody] Contact contact)
+        {
+            var contacts = _contactService.UpdateContact(contact);
+            return new JsonResult(contacts);
+        }
+        
+        [HttpDelete("{id}")]
+        public IActionResult DeleteById(int id)
+        {
+            var contacts = _contactService.DeleteContact(id);
+            return new JsonResult(contacts);
+        }
+
     }
 }

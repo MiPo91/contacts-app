@@ -9,5 +9,8 @@ namespace ContactsWebApi.Repositories
         Contact GetById(int id);
 
         //  TODO add, update, delete
+        List<Contact> AddContact(Contact contact);
+        List<Contact> UpdateContact(Contact contact);
+        List<Contact> DeleteContact(int id);
     }
 }

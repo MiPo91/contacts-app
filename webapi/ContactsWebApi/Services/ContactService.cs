@@ -4,7 +4,7 @@ using ContactsWebApi.Repositories;
 
 namespace ContactsWebApi.Services
 {
-    public class ContactService: IContactService
+    public class ContactService : IContactService
     {
         private readonly IContactRepository _contactRepository;
 
@@ -21,6 +21,22 @@ namespace ContactsWebApi.Services
         public Contact FindContactById(int id)
         {
             return _contactRepository.GetById(id);
+        }
+
+        public List<Contact> AddNewContact(Contact contact)
+        {
+            return _contactRepository.AddContact(contact);
+        }
+
+
+        public List<Contact> UpdateContact(Contact contact)
+        {
+            return _contactRepository.UpdateContact(contact);
+        }
+
+        public List<Contact> DeleteContact(int id)
+        {
+            return _contactRepository.DeleteContact(id);
         }
     }
 }

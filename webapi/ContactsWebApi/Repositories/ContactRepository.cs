@@ -32,5 +32,27 @@ namespace ContactsWebApi.Repositories
                 new Contact(2, "Nukku", "Matti", "0401234567", "Nukkujantie 17", "Lappeenranta")
             };
         }
+
+        public List<Contact> AddContact(Contact contact)
+        {
+            _contacts.Add(contact);
+            return _contacts;
+        }
+
+        public List<Contact> UpdateContact(Contact contact)
+        {
+            // _contacts.Where(c => c.Id == contact.Id).First() = contact;
+
+            _contacts = _contacts.Where(c => c.Id != contact.Id).ToList(); // Poistetaan vanha arvo !HUOM! Tee uusiksi kun lisätään tietokanta yhteys !HUOM!
+            _contacts.Add(contact); // Luodaan kontakti uudelleen !HUOM! Tee uusiksi kun lisätään tietokanta yhteys !HUOM!
+
+            return _contacts;
+        }
+
+        public List<Contact> DeleteContact(int id)
+        {
+            _contacts = _contacts.Where(c => c.Id != id).ToList();
+            return _contacts; 
+        }
     }
 }
