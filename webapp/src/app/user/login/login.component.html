@@ -1,15 +1,24 @@
 <div fxLayout="column" fxLayoutAlign="center center" fxFlexFill>
-<mat-card class="login-form">
-  <mat-form-field>
-    <input matInput placeholder="Account Name" [(ngModel)]="user.account">
-  </mat-form-field>
+  <div class="login-header">Login</div>
+  <mat-card class="login-form">
+    <mat-card-content>
+      <div class="login-row">
+        <mat-icon color="primary">person</mat-icon>
+        <mat-form-field>
+          <input matInput placeholder="Account Name" [(ngModel)]="user.account">
+        </mat-form-field>
+      </div>
 
-  <mat-form-field>
-    <input matInput placeholder="Password" type="password" [(ngModel)]="user.password">
-  </mat-form-field>
+      <div class="login-row">
+        <mat-icon color="primary">lock</mat-icon>
+        <mat-form-field>
+          <input matInput placeholder="Password" type="password" [(ngModel)]="user.password">
+        </mat-form-field>
+      </div>
 
-  <button (click)="login()" mat-raised-button color="primary">Login</button>
+      <button (click)="login()" mat-button color="primary">Login</button>
 
-  <span>{{errorMessage}}</span>
-</mat-card>
+      <span>{{errorMessage}}</span>
+    </mat-card-content>
+  </mat-card>
 </div>
