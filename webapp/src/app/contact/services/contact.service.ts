@@ -35,6 +35,7 @@ export class ContactService {
   }
 
   findContactById(id) {
+    console.log(this.contacts);
      return _.find(this.contacts, function(c) { return c.id === id ; });
   }
 
