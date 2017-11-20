@@ -23,24 +23,30 @@ import {SafeUrlPipe} from './utils/safe-url.pipe';
 import {LoginComponent} from './user/login/login.component';
 import {UserService} from './user/user.service';
 import {LayoutModule} from '@angular/cdk/layout';
+import {AuthenticationGuard} from './guard/authentication.guard';
 
 const routes: Routes = [
   {
     path: '',
-    component: ContactListComponent
+    component: ContactListComponent,
+    canActivate: [AuthenticationGuard]
   }, {
     path: 'contacts',
-    component: ContactListComponent
+    component: ContactListComponent,
+    canActivate: [AuthenticationGuard]
   },
   {
     path: 'add-contact',
-    component: ContactDetailsComponent
+    component: ContactDetailsComponent,
+    canActivate: [AuthenticationGuard]
   }, {
     path: 'contacts/:id',
-    component: ContactDetailsComponent
+    component: ContactDetailsComponent,
+    canActivate: [AuthenticationGuard]
   }, {
     path: 'map',
-    component: MapLayoutCardComponent
+    component: MapLayoutCardComponent,
+    canActivate: [AuthenticationGuard]
   }, {
     path: 'login',
     component: LoginComponent
@@ -76,7 +82,7 @@ const routes: Routes = [
     MatListModule,
     LayoutModule
   ],
-  providers: [ContactService, ToolbarService, UserService],
+  providers: [ContactService, ToolbarService, UserService, AuthenticationGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule {

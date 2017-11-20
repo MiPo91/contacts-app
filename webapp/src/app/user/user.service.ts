@@ -13,7 +13,6 @@ export class UserService implements OnInit {
       new User('username', 'password', 'MiPo91'),
       new User('test', 'test', 'Joku Jostain')
     ];
-    this.checkCredentials();
   }
 
   ngOnInit() {
@@ -37,10 +36,11 @@ export class UserService implements OnInit {
   checkCredentials() {
     if (localStorage.getItem('user') === null) {
       this.loggedIn = false;
-      this.router.navigate(['login']);
+      // this.router.navigate(['login']);
     } else {
       this.loggedIn = true;
     }
+    return this.loggedIn;
   }
 
   getUserInfo() {
