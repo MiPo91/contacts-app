@@ -11,14 +11,8 @@ export class ContactService {
   constructor() {
     this.contacts = this.findContacts();
 
-    const testi = _.maxBy(this.contacts, function (c) {
-      return c.id;
-    });
-    if (typeof testi !== 'undefined') {
-      this.id = testi.id;
-    } else {
-      this.id = 0;
-    }
+    const contactByMaxId = _.maxBy(this.contacts, 'id');
+    this.id = contactByMaxId ? contactByMaxId.id : 0;
   }
 
   findContacts() {
@@ -36,14 +30,20 @@ export class ContactService {
 
   findContactById(id) {
     console.log(this.contacts);
-     return _.find(this.contacts, function(c) { return c.id === id ; });
+    return _.find(this.contacts, function (c) {
+      return c.id === id;
+    });
   }
 
   saveContact(contact: Contact) {
-    this.id += 1;
-    contact.id = this.id;
-    this.contacts.push(Object.assign({}, contact));
-
+    if (contact.id) { // Edit contact
+      const index = _.findIndex(this.contacts, {id: contact.id});
+      this.contacts.splice(index, 1, contact);
+    } else { // New contact
+      this.id += 1;
+      contact.id = this.id;
+      this.contacts.push(Object.assign({}, contact));
+    }
     this.saveToLocalStorage();
   }
 
@@ -51,12 +51,6 @@ export class ContactService {
     _.remove(this.contacts, function (c) {
       return c.id === contact.id;
     });
-    this.saveToLocalStorage();
-  }
-
-  saveEditContact(contact: Contact) {
-    const index = _.findIndex(this.contacts, {id: contact.id});
-    this.contacts.splice(index, 1, contact);
     this.saveToLocalStorage();
   }
 

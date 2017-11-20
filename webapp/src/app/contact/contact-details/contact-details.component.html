@@ -1,7 +1,7 @@
 <mat-card>
   <mat-card-header>
     <mat-card-title>
-      {{title}}
+      {{editMode ? 'Edit contact - ' + contact.id : 'Add new contact'}}
     </mat-card-title>
   </mat-card-header>
 
@@ -23,8 +23,7 @@
   </mat-form-field>
   </mat-card-content>
   <mat-card-actions>
-    <button mat-button (click)="onSubmitContact()" *ngIf="actionType === 'new'">Save Contact</button>
-    <button mat-button (click)="onSubmitEditContact()" *ngIf="actionType === 'update'">Update Contact</button>
+    <button mat-button (click)="onSubmitContact()">{{editMode ? 'Update Contact' : 'Save Contact'}}</button>
     <button mat-button (click)="onCancel()">Cancel</button>
   </mat-card-actions>
 </mat-card>

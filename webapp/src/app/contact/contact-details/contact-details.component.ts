@@ -14,27 +14,20 @@ import {Location} from '@angular/common';
 export class ContactDetailsComponent implements OnInit {
 
   contact: Contact;
-  title: string;
-  actionType: string;
+  editMode: boolean;
 
   constructor(private contactService: ContactService, private router: Router, private route: ActivatedRoute, private toolbar: ToolbarService, private location: Location) {
     this.contact = new Contact();
-    this.title = 'Add new Contact';
-    this.actionType = 'new';
+    this.editMode = false;
   }
 
   onSubmitContact() {
     this.contactService.saveContact(this.contact);
-    this.router.navigate(['/']);
-  }
-
-  onSubmitEditContact() {
-    this.contactService.saveEditContact(this.contact);
-    this.router.navigate(['/']);
+    this.location.back();
   }
 
   onCancel() {
-    this.router.navigate(['/']);
+    this.location.back();
   }
 
   ngOnInit() {
@@ -43,8 +36,7 @@ export class ContactDetailsComponent implements OnInit {
     const id = this.route.snapshot.paramMap.get('id');
     if (id !== null) {
       this.contact = this.contactService.findContactById(+id);
-      this.title = 'Edit Contact - ' + id;
-      this.actionType = 'update';
+      this.editMode = true;
     }
   }
 }
