@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {Contact} from '../../contact';
 import {ContactService} from '../../services/contact.service';
 import {Router} from '@angular/router';
+import {HttpContactService} from '../../services/http-contact.service';
 
 @Component({
   selector: 'app-contact-list-item',
@@ -12,14 +13,17 @@ export class ContactListItemComponent implements OnInit {
 
   @Input() contact: Contact;
 
-  constructor(private contactService: ContactService, private router: Router) {
+  constructor(private httpService: HttpContactService, private router: Router) {
   }
 
   ngOnInit() {
   }
 
   onSubmitDelete() {
-    this.contactService.deleteContact(this.contact);
+    // this.contactService.deleteContact(this.contact);
+    this.httpService.deleteContact(this.contact).subscribe(result => {
+      console.log(result);
+    });
   }
 
   onSubmitEdit() {

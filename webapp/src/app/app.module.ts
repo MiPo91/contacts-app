@@ -24,6 +24,8 @@ import {LoginComponent} from './user/login/login.component';
 import {UserService} from './user/user.service';
 import {LayoutModule} from '@angular/cdk/layout';
 import {AuthenticationGuard} from './guard/authentication.guard';
+import {HttpContactService} from './contact/services/http-contact.service';
+import {HttpClientModule} from '@angular/common/http';
 
 const routes: Routes = [
   {
@@ -80,9 +82,10 @@ const routes: Routes = [
     MatToolbarModule,
     MatSidenavModule,
     MatListModule,
-    LayoutModule
+    LayoutModule,
+    HttpClientModule
   ],
-  providers: [ContactService, ToolbarService, UserService, AuthenticationGuard],
+  providers: [ContactService, ToolbarService, UserService, AuthenticationGuard, HttpContactService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
