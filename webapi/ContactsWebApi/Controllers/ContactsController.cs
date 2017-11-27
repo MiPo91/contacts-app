@@ -17,37 +17,37 @@ namespace ContactsWebApi.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            var contacts = _contactService.FindContacts();
-            return new JsonResult(contacts);
+            var result = _contactService.FindContacts();
+            return new JsonResult(result);
         }
 
         [HttpGet("{id}")]
         public IActionResult GetById(int id)
         {
-            var contact = _contactService.FindContactById(id);
-            return new JsonResult(contact);
+            var result = _contactService.FindContactById(id);
+            return new JsonResult(result);
         }
 
         [HttpPost]
         public IActionResult Post([FromBody] Contact contact)
         {
-            var contacts = _contactService.AddNewContact(contact);
-            return new JsonResult(contacts);
+            var result = _contactService.AddNewContact(contact);
+            return new JsonResult(result);
         }
 
         
         [HttpPut("{id}")]
         public IActionResult Put(int id, [FromBody] Contact contact)
         {
-            var contacts = _contactService.UpdateContact(contact);
-            return new JsonResult(contacts);
+            var result = _contactService.UpdateContact(contact);
+            return new JsonResult(result);
         }
         
         [HttpDelete("{id}")]
         public IActionResult DeleteById(int id)
         {
-            var contacts = _contactService.DeleteContact(id);
-            return new JsonResult(contacts);
+            var result = _contactService.DeleteContact(id);
+            return new JsonResult(result);
         }
 
     }

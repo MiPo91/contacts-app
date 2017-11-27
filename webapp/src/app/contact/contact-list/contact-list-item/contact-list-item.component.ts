@@ -13,17 +13,19 @@ export class ContactListItemComponent implements OnInit {
 
   @Input() contact: Contact;
 
-  constructor(private httpService: HttpContactService, private router: Router) {
+  constructor(private contactService: ContactService, private router: Router) {
   }
 
   ngOnInit() {
   }
 
   onSubmitDelete() {
-    // this.contactService.deleteContact(this.contact);
-    this.httpService.deleteContact(this.contact).subscribe(result => {
+    this.contactService.deleteContact(this.contact);
+
+
+/*    this.httpService.deleteContact(this.contact).subscribe(result => {
       console.log(result);
-    });
+    });*/
   }
 
   onSubmitEdit() {

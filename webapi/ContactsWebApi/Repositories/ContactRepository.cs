@@ -7,52 +7,96 @@ namespace ContactsWebApi.Repositories
     public class ContactRepository: IContactRepository
     {
         private List<Contact> _contacts;
+        private ContactContext _dbContext;
 
-        public ContactRepository()
+        public ContactRepository(ContactContext context)
         {
-            _contacts = new List<Contact>();
-            Initialize();
+             _contacts = new List<Contact>();
+            _dbContext = context;
+           // InitializeDB();
         }
 
         public List<Contact> GetAll()
         {
+            _contacts = _dbContext.Contacts.ToList();
             return _contacts;
         }
 
         public Contact GetById(int id)
         {
-            return _contacts.FirstOrDefault(c => c.Id == id);
+            var contact = _dbContext.Contacts.FirstOrDefault(c => c.Id == id);
+            return contact;
         }
 
-        private void Initialize()
+        public Contact AddContact(Contact contact)
         {
-            _contacts = new List<Contact>
+            var newContact = new Contact
             {
-                new Contact(1, "Joku", "Jostain", "040123456", "Jokutie 12", "Lappeenranta"),
-                new Contact(2, "Nukku", "Matti", "0401234567", "Nukkujantie 17", "Lappeenranta")
+                FirstName = contact.FirstName,
+                LastName = contact.LastName,
+                Phone = contact.Phone,
+                StreetAddress = contact.StreetAddress,
+                City = contact.City
             };
+
+            _dbContext.Contacts.Add(newContact);
+            _dbContext.SaveChanges();
+            
+            return newContact;
         }
 
-        public List<Contact> AddContact(Contact contact)
+        public Contact UpdateContact(Contact contact)
         {
-            _contacts.Add(contact);
-            return _contacts;
+            var updatedContact = _dbContext.Contacts.Where(c => c.Id == contact.Id).FirstOrDefault();
+
+            if(updatedContact == null)
+            {
+                return null;
+            }
+
+            updatedContact.FirstName = contact.FirstName;
+            updatedContact.LastName = contact.LastName;
+            updatedContact.Phone = contact.Phone;
+            updatedContact.StreetAddress = contact.StreetAddress;
+            updatedContact.City = contact.City;
+
+            _dbContext.Contacts.Update(updatedContact);
+            _dbContext.SaveChanges();
+
+            return updatedContact;
         }
 
-        public List<Contact> UpdateContact(Contact contact)
+        public Contact DeleteContact(int id)
         {
-            // _contacts.Where(c => c.Id == contact.Id).First() = contact;
+            var contact = _dbContext.Contacts.Where(c => c.Id == id).FirstOrDefault();
 
-            _contacts = _contacts.Where(c => c.Id != contact.Id).ToList(); // Poistetaan vanha arvo !HUOM! Tee uusiksi kun lisätään tietokanta yhteys !HUOM!
-            _contacts.Add(contact); // Luodaan kontakti uudelleen !HUOM! Tee uusiksi kun lisätään tietokanta yhteys !HUOM!
+            if (contact == null)
+            {
+                return null;
+            }
 
-            return _contacts;
+            _dbContext.Contacts.Remove(contact);
+            _dbContext.SaveChanges();
+            return contact; 
         }
 
-        public List<Contact> DeleteContact(int id)
+        private void InitializeDB()
         {
-            _contacts = _contacts.Where(c => c.Id != id).ToList();
-            return _contacts; 
+            if (_dbContext.Contacts.Any())
+            {
+                return;   // DB has been seeded
+            }
+
+            var contacts = new Contact[]
+            {
+              //  new Contact(firstName='Matti',lastName='Meikalainen',phone='040123456',streetAddress='jokukuja 55',city='Lappeenranta')
+            };
+
+            foreach (Contact contact in contacts)
+            {
+                _dbContext.Contacts.Add(contact);
+            }
+            _dbContext.SaveChanges();
         }
     }
 }

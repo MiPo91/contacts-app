@@ -5,7 +5,6 @@ import {ActivatedRoute, Router} from '@angular/router';
 import 'rxjs/add/operator/switchMap';
 import {ToolbarService, ToolbarSettings} from '../../toolbar/toolbar.service';
 import {Location} from '@angular/common';
-import {HttpContactService} from '../services/http-contact.service';
 
 @Component({
   selector: 'app-contact-details',
@@ -17,16 +16,19 @@ export class ContactDetailsComponent implements OnInit {
   contact: Contact;
   editMode: boolean;
 
-  constructor(private httpService: HttpContactService, private router: Router, private route: ActivatedRoute, private toolbar: ToolbarService, private location: Location) {
+  constructor(private contactService: ContactService, private router: Router, private route: ActivatedRoute, private toolbar: ToolbarService, private location: Location) {
     this.contact = new Contact();
     this.editMode = false;
   }
 
   onSubmitContact() {
     // this.contactService.saveContact(this.contact);
-    this.httpService.saveContact(this.contact).subscribe(result => {
-      console.log(result);
-    });
+    if (this.editMode) {
+      // this.httpService.updateContact(this.contact).subscribe(result => {});
+    } else {
+      // this.httpService.saveContact(this.contact).subscribe(result => {});
+    }
+    this.contactService.saveContact(this.contact);
     this.location.back();
   }
 
@@ -40,9 +42,10 @@ export class ContactDetailsComponent implements OnInit {
     const id = this.route.snapshot.paramMap.get('id');
     if (id !== null) {
       // this.contact = this.contactService.findContactById(+id);
-      this.httpService.getContactById(+id).subscribe(result => {
+/*      this.httpService.getContactById(+id).subscribe(result => {
         this.contact = result;
-      });
+      });*/
+      this.contact = this.contactService.findContactById(+id);
       this.editMode = true;
     }
   }

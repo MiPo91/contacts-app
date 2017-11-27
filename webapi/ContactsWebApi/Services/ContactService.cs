@@ -23,18 +23,17 @@ namespace ContactsWebApi.Services
             return _contactRepository.GetById(id);
         }
 
-        public List<Contact> AddNewContact(Contact contact)
+        public Contact AddNewContact(Contact contact)
         {
             return _contactRepository.AddContact(contact);
         }
 
-
-        public List<Contact> UpdateContact(Contact contact)
+        public Contact UpdateContact(Contact contact)
         {
             return _contactRepository.UpdateContact(contact);
         }
 
-        public List<Contact> DeleteContact(int id)
+        public Contact DeleteContact(int id)
         {
             return _contactRepository.DeleteContact(id);
         }
