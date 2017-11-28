@@ -23,7 +23,7 @@ export class HttpContactService {
   }
 
   updateContact(contact: Contact) {
-    return this.http.put<Contact>('http://localhost:59099/api/contacts/2', contact);
+    return this.http.put<Contact>('http://localhost:59099/api/contacts/', contact);
   }
 
   deleteContact(contact: Contact) {

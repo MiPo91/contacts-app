@@ -1,6 +1,8 @@
 import {Injectable, OnInit} from '@angular/core';
 import {User} from './user';
 import {Router} from '@angular/router';
+import {HttpClient} from '@angular/common/http';
+import {Observable} from 'rxjs/Observable';
 
 @Injectable()
 export class UserService implements OnInit {
@@ -8,23 +10,29 @@ export class UserService implements OnInit {
   public user: User;
   public loggedIn: boolean;
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private http: HttpClient) {
     this.users = [
-      new User('username', 'password', 'MiPo91'),
-      new User('test', 'test', 'Joku Jostain')
+      new User(1, 'username', 'password', 'MiPo91'),
+      new User(2, 'test', 'test', 'Joku Jostain')
     ];
   }
 
   ngOnInit() {
   }
 
+  getContactByAccount(account: string): Observable<User> {
+    return this.http.get<User>('http://localhost:59099/api/user/' + account);
+  }
+
   login(user: User) {
-    const authenticatedUser = this.users.find(u => u.account === user.account);
-    if (authenticatedUser && authenticatedUser.password === user.password) {
-      localStorage.setItem('user', JSON.stringify(authenticatedUser));
-      this.loggedIn = true;
-      this.router.navigate(['']);
-    }
+    // const authenticatedUser = this.users.find(u => u.account === user.account);
+    this.getContactByAccount(user.account).subscribe(result => {
+      if (result && result.password === user.password) {
+        localStorage.setItem('user', JSON.stringify(result));
+        this.loggedIn = true;
+        this.router.navigate(['']);
+      }
+    });
   }
 
   logout() {

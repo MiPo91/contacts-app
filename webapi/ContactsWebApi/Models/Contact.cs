@@ -9,10 +9,12 @@ namespace ContactsWebApi.Models
         { }
 
         public DbSet<Contact> Contacts { get; set; }
+        public DbSet<User> Users { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Contact>().ToTable("Contacts");
+            modelBuilder.Entity<User>().ToTable("Users");
         }
     }
 
@@ -38,5 +40,24 @@ namespace ContactsWebApi.Models
             City = city;
         }
         
+    }
+
+    public class User
+    {
+        public int Id { get; set; }
+        public string Account { get; set; }
+        public string Password { get; set; }
+        public string Name { get; set; }
+
+        public User() { }
+
+        public User(int id, string account, string password, string name)
+        {
+            Id = id;
+            Account = account;
+            Password = password;
+            Name = name;
+        }
+
     }
 }

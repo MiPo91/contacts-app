@@ -11,9 +11,10 @@ using System;
 namespace ContactsWebApi.Migrations
 {
     [DbContext(typeof(ContactContext))]
-    partial class ContactContextModelSnapshot : ModelSnapshot
+    [Migration("20171127115513_EFGetStarted.AspNetCore.NewDb.ContactContext")]
+    partial class EFGetStartedAspNetCoreNewDbContactContext
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

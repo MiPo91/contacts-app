@@ -14,7 +14,7 @@ export class LoginComponent implements OnInit {
   public errorMessage: string;
 
   constructor(private userService: UserService, private toolbar: ToolbarService) {
-    this.user = new User('', '', '');
+    this.user = new User(0, '', '', '');
     this.errorMessage = '';
   }
 
