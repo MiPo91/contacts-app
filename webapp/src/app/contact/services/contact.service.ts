@@ -54,7 +54,6 @@ export class ContactService {
     } else { // New contact
       // this.id += 1;
       // contact.id = this.id;
-
       this.httpService.saveContact(contact).subscribe(result => {
         contact.id = result.id;
         this.contacts.push(Object.assign({}, contact));

@@ -25,7 +25,8 @@ namespace ContactsWebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            var connection = @"Server=DKO-S010A-015\SQLEXPRESS;Database=EFGetStarted.AspNetCore.NewDb;Trusted_Connection=True;";
+            // var connection = @"Server=DKO-S010A-015\SQLEXPRESS;Database=EFGetStarted.AspNetCore.NewDb;Trusted_Connection=True;";
+            var connection = @"Server=tcp:mipo91.database.windows.net,1433; Initial Catalog = contactsdb; Persist Security Info = False; User ID=mipo91; Password=Koulu123; MultipleActiveResultSets = False; Encrypt = True; TrustServerCertificate = False; Connection Timeout = 30;";
             services.AddDbContext<ContactContext>(options => options.UseSqlServer(connection));
 
             services.AddScoped<IContactService, ContactService>();
