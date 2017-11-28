@@ -9,8 +9,10 @@ export class UserService implements OnInit {
   public users: User[];
   public user: User;
   public loggedIn: boolean;
+  public url: string;
 
   constructor(private router: Router, private http: HttpClient) {
+    this.url = 'http://mipo91-contacts-api.azurewebsites.net/';
     this.users = [
       new User(1, 'username', 'password', 'MiPo91'),
       new User(2, 'test', 'test', 'Joku Jostain')
@@ -21,17 +23,19 @@ export class UserService implements OnInit {
   }
 
   getContactByAccount(account: string): Observable<User> {
-    return this.http.get<User>('http://localhost:59099/api/user/' + account);
+    return this.http.get<User>(this.url + 'api/user/' + account);
   }
 
   login(user: User) {
     // const authenticatedUser = this.users.find(u => u.account === user.account);
-    this.getContactByAccount(user.account).subscribe(result => {
+    return this.getContactByAccount(user.account).map(result => {
       if (result && result.password === user.password) {
         localStorage.setItem('user', JSON.stringify(result));
         this.loggedIn = true;
         this.router.navigate(['']);
+        return true;
       }
+      return false;
     });
   }
 
