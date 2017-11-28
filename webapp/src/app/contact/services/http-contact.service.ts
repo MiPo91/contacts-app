@@ -9,7 +9,7 @@ export class HttpContactService {
   url: string;
 
   constructor(private http: HttpClient) {
-    this.url = 'http://mipo91-contacts-api.azurewebsites.net';
+    this.url = 'http://mipo91-contacts-api.azurewebsites.net/';
   }
 
   getContactById(contactId: number): Observable<Contact> {
@@ -25,7 +25,7 @@ export class HttpContactService {
   }
 
   updateContact(contact: Contact) {
-    return this.http.put<Contact>(this.url + 'api/contacts/', contact);
+    return this.http.put<Contact>(this.url + 'api/contacts/' + contact.id, contact);
   }
 
   deleteContact(contact: Contact) {
