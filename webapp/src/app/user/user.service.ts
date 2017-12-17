@@ -3,31 +3,26 @@ import {User} from './user';
 import {Router} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
+import {environment} from '../../environments/environment';
 
 @Injectable()
 export class UserService implements OnInit {
-  public users: User[];
   public user: User;
   public loggedIn: boolean;
   public url: string;
 
   constructor(private router: Router, private http: HttpClient) {
-    this.url = 'http://mipo91-contacts-api.azurewebsites.net/';
-    this.users = [
-      new User(1, 'username', 'password', 'MiPo91'),
-      new User(2, 'test', 'test', 'Joku Jostain')
-    ];
+    this.url = environment.endpointUrl;
   }
 
   ngOnInit() {
   }
 
   getContactByAccount(account: string): Observable<User> {
-    return this.http.get<User>(this.url + 'api/user/' + account);
+    return this.http.get<User>(this.url + '/user/' + account);
   }
 
   login(user: User) {
-    // const authenticatedUser = this.users.find(u => u.account === user.account);
     return this.getContactByAccount(user.account).map(result => {
       if (result && result.password === user.password) {
         localStorage.setItem('user', JSON.stringify(result));
