@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import {Contact} from '../contact';
 import {HttpClient} from '@angular/common/http';
+import {environment} from '../../../environments/environment';
 
 @Injectable()
 export class HttpContactService {
@@ -9,26 +10,26 @@ export class HttpContactService {
   url: string;
 
   constructor(private http: HttpClient) {
-    this.url = 'http://mipo91-contacts-api.azurewebsites.net/';
+    this.url = environment.endpointUrl;
   }
 
   getContactById(contactId: number): Observable<Contact> {
-   return this.http.get<Contact>(this.url + 'api/contacts/' + contactId);
+   return this.http.get<Contact>(this.url + '/contacts/' + contactId);
   }
 
   getContacts(): Observable<Contact[]> {
-    return this.http.get<Contact[]>(this.url + 'api/contacts');
+    return this.http.get<Contact[]>(this.url + '/contacts');
   }
 
   saveContact(contact: Contact) {
-    return this.http.post<Contact>(this.url + 'api/contacts', contact);
+    return this.http.post<Contact>(this.url + '/contacts', contact);
   }
 
   updateContact(contact: Contact) {
-    return this.http.put<Contact>(this.url + 'api/contacts/' + contact.id, contact);
+    return this.http.put<Contact>(this.url + '/contacts/' + contact.id, contact);
   }
 
   deleteContact(contact: Contact) {
-    return this.http.delete(this.url + 'api/contacts/' + contact.id);
+    return this.http.delete(this.url + '/contacts/' + contact.id);
   }
 }
