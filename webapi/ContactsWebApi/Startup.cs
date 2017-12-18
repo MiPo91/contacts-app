@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using ContactsWebApi.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 namespace ContactsWebApi
 {
@@ -35,6 +36,21 @@ namespace ContactsWebApi
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IUserRepository, UserRepository>();
 
+            services.Configure<AzureSettings>(Configuration.GetSection("AzureSettings"));
+
+            services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
+            .AddJwtBearer(options =>
+            {
+                options.Audience = Configuration["AzureSettings:ApplicationId"];
+                options.Authority = "https://login.windows.net/6aaedfdf-2220-4fef-8c57-cafb836bab5a/oauth2/token";
+            });
+
+            services.AddScoped<IAuthenticationService, AuthenticationService>();
+
             services.AddCors(o => o.AddPolicy("ContactsAppPolicy", builder =>
             {
                 builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
@@ -50,7 +66,7 @@ namespace ContactsWebApi
             {
                 app.UseDeveloperExceptionPage();
             }
-
+           // app.UseAuthentication();
             app.UseCors("ContactsAppPolicy");
             app.UseMvc();
         }
