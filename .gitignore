@@ -1,4 +1,5 @@
 /webapi/ContactsWebApi/bin
 /webapi/ContactsWebApi/obj
 /webapi/.vs
+.vs
 PublishProfiles
