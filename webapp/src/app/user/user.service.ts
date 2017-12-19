@@ -4,6 +4,7 @@ import {Router} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 import {environment} from '../../environments/environment';
+import {Token} from './token';
 
 @Injectable()
 export class UserService implements OnInit {
@@ -18,16 +19,17 @@ export class UserService implements OnInit {
   ngOnInit() {
   }
 
-  getContactByAccount(account: string): Observable<User> {
-    return this.http.get<User>(this.url + '/user/' + account);
+  getAuthToken(user: User) {
+    return this.http.post<Token>(this.url + '/authentication', user);
   }
 
   login(user: User) {
-    return this.getContactByAccount(user.account).map(result => {
-      if (result && result.password === user.password) {
-        localStorage.setItem('user', JSON.stringify(result));
+    return this.getAuthToken(user).map(result => {
+      if (result !== null) {
+        localStorage.setItem('authToken', JSON.stringify(result));
+        localStorage.setItem('user', JSON.stringify(user));
         this.loggedIn = true;
-        this.router.navigate(['']);
+        this.router.navigate(['/']);
         return true;
       }
       return false;
@@ -36,14 +38,14 @@ export class UserService implements OnInit {
 
   logout() {
     localStorage.removeItem('user');
+    localStorage.removeItem('authToken');
     this.loggedIn = false;
     this.router.navigate(['/login']);
   }
 
   checkCredentials() {
-    if (localStorage.getItem('user') === null) {
+    if (localStorage.getItem('authToken') === null) {
       this.loggedIn = false;
-      // this.router.navigate(['login']);
     } else {
       this.loggedIn = true;
     }

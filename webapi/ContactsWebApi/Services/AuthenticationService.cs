@@ -26,7 +26,7 @@ namespace ContactsWebApi.Services
                 new KeyValuePair<string, string>("grant_type", _azureSettings.GrantType),
                 new KeyValuePair<string, string>("client_secret", _azureSettings.Key)
             };
-            authenticationParams.Insert(0, new KeyValuePair<string, string>("username", authentication.Account));
+            authenticationParams.Insert(0, new KeyValuePair<string, string>("username", authentication.Username));
             authenticationParams.Insert(0, new KeyValuePair<string, string>("password", authentication.Password));
 
             AccessToken token = null;

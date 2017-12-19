@@ -23,10 +23,6 @@ export class ContactService {
     this.contacts = JSON.parse(localStorage.getItem('contacts'));
 
     if (this.contacts === null) {
-      /*      this.contacts = [
-              new Contact(1, 'Testi', 'Henkilo', '040123456', 'Testikuja 12', 'Lappeenranta')
-            ];*/
-
       return this.httpService.getContacts().map(result => {
         this.contacts = result;
         this.saveToLocalStorage();

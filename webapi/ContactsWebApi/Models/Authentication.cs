@@ -7,14 +7,14 @@ namespace ContactsWebApi.Models
 {
     public class Authentication
     {
-        public string Account { get; set; }
+        public string Username { get; set; }
         public string Password { get; set; }
 
         public Authentication() { }
 
         public Authentication(string account, string password)
         {
-            Account = account;
+            Username = account;
             Password = password;
         }
     }

@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
   login() {
     this.userService.login(this.user).subscribe(result => {
       if (!result) {
-        this.errorMessage = 'Invalid Account Name or Password';
+        this.errorMessage = 'Invalid Username or Password';
       }
     });
   }

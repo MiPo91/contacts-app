@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ContactsWebApi.Controllers
 {
-    // [Authorize]
+    [Authorize]
     [Route("api/contacts")]
     public class ContactsController: Controller
     {

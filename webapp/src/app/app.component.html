@@ -4,7 +4,7 @@
                [opened]="!isSmallScreen">
     <div class="sidenav-img" *ngIf="isLoggedIn() === true">
       <mat-icon>account_circle</mat-icon>
-      <span>{{getUserInfo().name}}</span>
+      <span>{{getUserInfo().username}}</span>
     </div>
     <div class="sidenav-content">
       <mat-list>
