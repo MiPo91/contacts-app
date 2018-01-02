@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace ContactsWebApi
+﻿namespace ContactsWebApi
 {
     public class AzureSettings
     {
@@ -12,5 +7,6 @@ namespace ContactsWebApi
         public string Resource { get; set; }
         public string GrantType { get; set; }
         public string Key { get; set; }
+        public string Endpoint { get; set; }
     }
 }

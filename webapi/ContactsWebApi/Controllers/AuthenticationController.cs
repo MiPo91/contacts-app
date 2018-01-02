@@ -21,6 +21,10 @@ namespace ContactsWebApi.Controllers
         {
 
             var token = await _authenticationService.RequestAccessToken(authentication);
+            if(token == null)
+            {
+                Response.StatusCode = 401;
+            }
             return new JsonResult(token);
         }
     }

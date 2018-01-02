@@ -41,7 +41,7 @@ namespace ContactsWebApi
             .AddJwtBearer(options =>
             {
                 options.Audience = Configuration["AzureSettings:ApplicationId"];
-                options.Authority = "https://login.microsoftonline.com/" + Configuration["AzureSettings:DirectoryId"];
+                options.Authority = Configuration["MicrosoftLoginUrl"] + Configuration["AzureSettings:DirectoryId"];
             });
 
             services.AddScoped<IAuthenticationService, AuthenticationService>();

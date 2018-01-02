@@ -1,30 +1,28 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using ContactsWebApi.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace ContactsWebApi.Repositories
 {
     public class ContactRepository: IContactRepository
     {
-        private List<Contact> _contacts;
         private ContactContext _dbContext;
 
         public ContactRepository(ContactContext context)
         {
-             _contacts = new List<Contact>();
             _dbContext = context;
            // InitializeDB();
         }
 
         public List<Contact> GetAll()
         {
-            _contacts = _dbContext.Contacts.ToList();
-            return _contacts;
+            return _dbContext.Contacts.AsNoTracking().ToList();
         }
 
         public Contact GetById(int id)
         {
-            var contact = _dbContext.Contacts.FirstOrDefault(c => c.Id == id);
+            var contact = _dbContext.Contacts.AsNoTracking().FirstOrDefault(c => c.Id == id);
             return contact;
         }
 
@@ -47,34 +45,14 @@ namespace ContactsWebApi.Repositories
 
         public Contact UpdateContact(Contact contact)
         {
-            var updatedContact = _dbContext.Contacts.Where(c => c.Id == contact.Id).FirstOrDefault();
-
-            if(updatedContact == null)
-            {
-                return null;
-            }
-
-            updatedContact.FirstName = contact.FirstName;
-            updatedContact.LastName = contact.LastName;
-            updatedContact.Phone = contact.Phone;
-            updatedContact.StreetAddress = contact.StreetAddress;
-            updatedContact.City = contact.City;
-
-            _dbContext.Contacts.Update(updatedContact);
+            _dbContext.Contacts.Update(contact);
             _dbContext.SaveChanges();
 
-            return updatedContact;
+            return contact;
         }
 
-        public Contact DeleteContact(int id)
+        public Contact DeleteContact(Contact contact)
         {
-            var contact = _dbContext.Contacts.Where(c => c.Id == id).FirstOrDefault();
-
-            if (contact == null)
-            {
-                return null;
-            }
-
             _dbContext.Contacts.Remove(contact);
             _dbContext.SaveChanges();
             return contact; 

@@ -30,12 +30,22 @@ namespace ContactsWebApi.Services
 
         public Contact UpdateContact(Contact contact)
         {
-            return _contactRepository.UpdateContact(contact);
+            var getContact = FindContactById(contact.Id);
+            if (getContact != null)
+            {
+                return _contactRepository.UpdateContact(contact);
+            }
+            return null;
         }
 
         public Contact DeleteContact(int id)
         {
-            return _contactRepository.DeleteContact(id);
+            var contact = FindContactById(id);
+            if(contact != null)
+            {
+                return _contactRepository.DeleteContact(contact);
+            }
+            return null;
         }
     }
 }

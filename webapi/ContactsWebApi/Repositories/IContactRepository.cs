@@ -10,6 +10,6 @@ namespace ContactsWebApi.Repositories
 
         Contact AddContact(Contact contact);
         Contact UpdateContact(Contact contact);
-        Contact DeleteContact(int id);
+        Contact DeleteContact(Contact contact);
     }
 }

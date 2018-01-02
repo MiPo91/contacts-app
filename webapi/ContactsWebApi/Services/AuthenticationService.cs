@@ -11,14 +11,14 @@ namespace ContactsWebApi.Services
     {
         private readonly AzureSettings _azureSettings;
 
-        public AuthenticationService(IOptions<AzureSettings> AzureSettings)
+        public AuthenticationService(IOptions<AzureSettings> azureSettings)
         {
-            _azureSettings = AzureSettings.Value;
+            _azureSettings = azureSettings.Value;
         }
 
         public async Task<AccessToken> RequestAccessToken(Authentication authentication)
         {
-            var endpoint = "https://login.windows.net/6aaedfdf-2220-4fef-8c57-cafb836bab5a/oauth2/token";
+            var endpoint = _azureSettings.Endpoint;
             var authenticationParams = new List<KeyValuePair<string, string>>
             {
                 new KeyValuePair<string, string>("client_id", _azureSettings.ApplicationId),
