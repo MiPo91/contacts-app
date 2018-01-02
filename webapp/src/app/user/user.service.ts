@@ -39,6 +39,7 @@ export class UserService implements OnInit {
   logout() {
     localStorage.removeItem('user');
     localStorage.removeItem('authToken');
+    localStorage.removeItem('contacts');
     this.loggedIn = false;
     this.router.navigate(['/login']);
   }
