@@ -1,21 +1,16 @@
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import {Contact} from '../contact';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
 import {environment} from '../../../environments/environment';
-import {Token} from '../../user/token';
 
 @Injectable()
 export class HttpContactService {
 
   url: string;
-  headers: any;
-  token: Token;
 
   constructor(private http: HttpClient) {
     this.url = environment.endpointUrl;
-    this.token = JSON.parse(localStorage.getItem('authToken'));
-    this.headers = new HttpHeaders({'Authorization': 'Bearer ' + this.token.access_token});
   }
 
   getContactById(contactId: number): Observable<Contact> {
@@ -23,18 +18,18 @@ export class HttpContactService {
   }
 
   getContacts(): Observable<Contact[]> {
-    return this.http.get<Contact[]>(this.url + '/contacts', {headers: this.headers});
+    return this.http.get<Contact[]>(this.url + '/contacts');
   }
 
   saveContact(contact: Contact) {
-    return this.http.post<Contact>(this.url + '/contacts', contact, {headers: this.headers});
+    return this.http.post<Contact>(this.url + '/contacts', contact);
   }
 
   updateContact(contact: Contact) {
-    return this.http.put<Contact>(this.url + '/contacts/' + contact.id, contact, {headers: this.headers});
+    return this.http.put<Contact>(this.url + '/contacts/' + contact.id, contact);
   }
 
   deleteContact(contact: Contact) {
-    return this.http.delete(this.url + '/contacts/' + contact.id, {headers: this.headers});
+    return this.http.delete(this.url + '/contacts/' + contact.id);
   }
 }

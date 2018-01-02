@@ -25,8 +25,9 @@ import {UserService} from './user/user.service';
 import {LayoutModule} from '@angular/cdk/layout';
 import {AuthenticationGuard} from './guard/authentication.guard';
 import {HttpContactService} from './contact/services/http-contact.service';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {AppLayoutComponent} from './layout/app-layout/app-layout.component';
+import {CaHttpInterceptor} from './config/ca-http-interceptor';
 
 const routes: Routes = [
   {
@@ -95,7 +96,18 @@ const routes: Routes = [
     LayoutModule,
     HttpClientModule
   ],
-  providers: [ContactService, ToolbarService, UserService, AuthenticationGuard, HttpContactService],
+  providers: [
+    ContactService,
+    ToolbarService,
+    UserService,
+    AuthenticationGuard,
+    HttpContactService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: CaHttpInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
