@@ -1,0 +1,35 @@
+<mat-sidenav-container>
+  <mat-sidenav #sidenav align="start"
+               [mode]="isSmallScreen ? 'over' : 'side'"
+               [opened]="!isSmallScreen">
+    <div class="sidenav-img" *ngIf="isLoggedIn() === true">
+      <mat-icon>account_circle</mat-icon>
+      <span>{{getUserInfo().username}}</span>
+    </div>
+    <div class="sidenav-content">
+      <mat-list>
+        <mat-list-item *ngIf="isLoggedIn() === true">
+          <mat-icon mat-list-icon="">list</mat-icon>
+          <button mat-button (click)="showContacts()">List</button>
+        </mat-list-item>
+        <mat-list-item *ngIf="isLoggedIn() === true">
+          <mat-icon mat-list-icon="">add</mat-icon>
+          <button mat-button (click)="addContact()">Add New</button>
+        </mat-list-item>
+        <mat-list-item>
+          <mat-icon mat-list-icon="">add</mat-icon>
+          <button mat-button (click)="toLoginPage()" *ngIf="isLoggedIn() === false">Login</button>
+          <button mat-button (click)="userLogout()" *ngIf="isLoggedIn() === true">Logout</button>
+        </mat-list-item>
+      </mat-list>
+    </div>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div fxLayout="column" fxLayoutAlign="start stretch" fxFlexFill>
+      <app-toolbar (toggleSidenav)="toggleSidenav()"></app-toolbar>
+      <div class="app-container">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

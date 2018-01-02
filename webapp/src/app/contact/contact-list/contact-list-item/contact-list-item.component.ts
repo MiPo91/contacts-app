@@ -29,11 +29,11 @@ export class ContactListItemComponent implements OnInit {
   }
 
   onSubmitEdit() {
-    this.router.navigate(['/contacts', this.contact.id]);
+    this.router.navigate(['/ca/contacts', this.contact.id]);
   }
 
   navigateToMap() {
-    this.router.navigate(['map',
+    this.router.navigate(['/ca/map',
       {
         streetAddress: this.contact.streetAddress,
         city: this.contact.city

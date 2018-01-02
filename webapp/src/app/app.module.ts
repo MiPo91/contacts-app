@@ -26,32 +26,41 @@ import {LayoutModule} from '@angular/cdk/layout';
 import {AuthenticationGuard} from './guard/authentication.guard';
 import {HttpContactService} from './contact/services/http-contact.service';
 import {HttpClientModule} from '@angular/common/http';
+import {AppLayoutComponent} from './layout/app-layout/app-layout.component';
 
 const routes: Routes = [
   {
-    path: '',
-    component: ContactListComponent,
-    canActivate: [AuthenticationGuard]
-  }, {
-    path: 'contacts',
-    component: ContactListComponent,
-    canActivate: [AuthenticationGuard]
-  },
-  {
-    path: 'add-contact',
-    component: ContactDetailsComponent,
-    canActivate: [AuthenticationGuard]
-  }, {
-    path: 'contacts/:id',
-    component: ContactDetailsComponent,
-    canActivate: [AuthenticationGuard]
-  }, {
-    path: 'map',
-    component: MapLayoutCardComponent,
-    canActivate: [AuthenticationGuard]
-  }, {
     path: 'login',
     component: LoginComponent
+  },
+  {
+    path: '',
+    component: LoginComponent
+  },
+  {
+    path: 'ca',
+    component: AppLayoutComponent,
+    canActivate: [AuthenticationGuard],
+    children: [
+      {
+        path: '',
+        component: ContactListComponent
+      },
+      {
+        path: 'contacts',
+        component: ContactListComponent,
+      },
+      {
+        path: 'add-contact',
+        component: ContactDetailsComponent
+      }, {
+        path: 'contacts/:id',
+        component: ContactDetailsComponent
+      }, {
+        path: 'map',
+        component: MapLayoutCardComponent
+      }
+    ]
   }
 ];
 
@@ -66,7 +75,8 @@ const routes: Routes = [
     MapComponent,
     MapLayoutCardComponent,
     SafeUrlPipe,
-    LoginComponent
+    LoginComponent,
+    AppLayoutComponent
   ],
   imports: [
     BrowserModule,

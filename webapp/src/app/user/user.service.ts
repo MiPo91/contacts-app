@@ -29,7 +29,7 @@ export class UserService implements OnInit {
         localStorage.setItem('authToken', JSON.stringify(result));
         localStorage.setItem('user', JSON.stringify(user));
         this.loggedIn = true;
-        this.router.navigate(['/']);
+        this.router.navigate(['/ca']);
         return true;
       }
       return false;

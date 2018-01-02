@@ -32,6 +32,6 @@ export class ContactListComponent implements OnInit {
   }
 
   onSubmitNewContact() {
-    this.router.navigate(['/add-contact']);
+    this.router.navigate(['/ca/add-contact']);
   }
 }
