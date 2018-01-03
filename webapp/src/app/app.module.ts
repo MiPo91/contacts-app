@@ -8,7 +8,9 @@ import {ContactListItemComponent} from './contact/contact-list/contact-list-item
 import {FormsModule} from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {
-  MatButtonModule, MatCardModule, MatExpansionModule, MatIconModule, MatInputModule, MatListModule, MatSidenavModule,
+  MatButtonModule, MatCardModule, MatDialogModule, MatExpansionModule, MatIconModule, MatInputModule,
+  MatListModule,
+  MatSidenavModule,
   MatToolbarModule
 } from '@angular/material';
 import {RouterModule, Routes} from '@angular/router';
@@ -28,6 +30,8 @@ import {HttpContactService} from './contact/services/http-contact.service';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {AppLayoutComponent} from './layout/app-layout/app-layout.component';
 import {CaHttpInterceptor} from './config/ca-http-interceptor';
+import {DialogsService} from './dialogs/dialogs.service';
+import { ConfirmDialogComponent } from './dialogs/confirm-dialog/confirm-dialog.component';
 
 const routes: Routes = [
   {
@@ -77,7 +81,8 @@ const routes: Routes = [
     MapLayoutCardComponent,
     SafeUrlPipe,
     LoginComponent,
-    AppLayoutComponent
+    AppLayoutComponent,
+    ConfirmDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -94,8 +99,10 @@ const routes: Routes = [
     MatSidenavModule,
     MatListModule,
     LayoutModule,
-    HttpClientModule
+    HttpClientModule,
+    MatDialogModule
   ],
+  entryComponents: [ConfirmDialogComponent],
   providers: [
     ContactService,
     ToolbarService,
@@ -106,7 +113,8 @@ const routes: Routes = [
       provide: HTTP_INTERCEPTORS,
       useClass: CaHttpInterceptor,
       multi: true
-    }
+    },
+    DialogsService
   ],
   bootstrap: [AppComponent]
 })
