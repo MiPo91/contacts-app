@@ -20,8 +20,8 @@ export class CaHttpInterceptor implements HttpInterceptor {
       const errorMessage = {title: '', message: ''};
 
       if (response.status === 401) {
-        errorMessage.title = 'Error Occurred while logging in:';
-        errorMessage.message = 'Invalid Account name or Password';
+        errorMessage.title = 'Unauthorized access:';
+        errorMessage.message = 'Invalid Token response.';
       }
 
       if (response.status === 0) {
