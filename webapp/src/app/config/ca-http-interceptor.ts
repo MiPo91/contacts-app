@@ -29,6 +29,11 @@ export class CaHttpInterceptor implements HttpInterceptor {
         errorMessage.message = 'Come back later.';
       }
 
+      if (response.status !== 0 && response.status !== 401) {
+        errorMessage.title = 'Some error occurred';
+        errorMessage.message = 'Come back later.';
+      }
+
       return Observable.throw(errorMessage);
     });
   }

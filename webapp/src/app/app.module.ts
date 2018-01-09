@@ -33,6 +33,9 @@ import {CaHttpInterceptor} from './config/ca-http-interceptor';
 import {DialogsService} from './dialogs/dialogs.service';
 import { ConfirmDialogComponent } from './dialogs/confirm-dialog/confirm-dialog.component';
 
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
+
 const routes: Routes = [
   {
     path: 'login',
@@ -100,7 +103,8 @@ const routes: Routes = [
     MatListModule,
     LayoutModule,
     HttpClientModule,
-    MatDialogModule
+    MatDialogModule,
+    ServiceWorkerModule.register('/ngsw-worker.js', {enabled: environment.production})
   ],
   entryComponents: [ConfirmDialogComponent],
   providers: [
